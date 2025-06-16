@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.19.xsd">
+
+    <changeSet id="3" author="Hrytsuk">
+        <insert tableName="role">
+            <column name="name">ROLE_ADMINISTRATOR</column>
+        </insert>
+        <insert tableName="role">
+            <column name="name">ROLE_VIEWER</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="4" author="Hrytsuk">
+        <comment>Insert sensor type values.</comment>
+        <insert tableName="sensor_type">
+            <column name="name">Pressure</column>
+        </insert>
+        <insert tableName="sensor_type">
+            <column name="name">Voltage</column>
+        </insert>
+        <insert tableName="sensor_type">
+            <column name="name">Temperature</column>
+        </insert>
+        <insert tableName="sensor_type">
+            <column name="name">Humidity</column>
+        </insert>
+
+        <comment>Insert sensor unit values.</comment>
+        <insert tableName="sensor_unit">
+            <column name="name">bar</column>
+        </insert>
+        <insert tableName="sensor_unit">
+            <column name="name">voltage</column>
+        </insert>
+        <insert tableName="sensor_unit">
+            <column name="name">°C</column>
+        </insert>
+        <insert tableName="sensor_unit">
+            <column name="name">%</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

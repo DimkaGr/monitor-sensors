@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.19.xsd">
+
+    <changeSet id="1" author="Hrytsuk">
+        <createTable tableName="role">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="user">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints foreignKeyName="fk_user_role"
+                             referencedTableName="role"
+                             referencedColumnNames="id"
+                             nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Hrytsuk">
+        <createTable tableName="sensor_type">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="sensor_unit">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="sensor">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="model" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="range_from" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="range_to" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="BIGINT">
+                <constraints foreignKeyName="fk_sensor_type"
+                             referencedTableName="sensor_type"
+                             referencedColumnNames="id"
+                             nullable="false"/>
+            </column>
+            <column name="unit_id" type="BIGINT">
+                <constraints foreignKeyName="fk_sensor_unit"
+                             referencedTableName="sensor_unit"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="location" type="VARCHAR(40)"/>
+            <column name="description" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
